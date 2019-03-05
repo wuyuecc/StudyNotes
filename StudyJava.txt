@@ -1,0 +1,6 @@
+字符串
+Java中字符采用Unicode编码，所以可以包含中文等亚洲字符
+String是不可变字符串，StringBuffer和StringBuilder是可变字符串
+StringBuffer是线程安全的，StringBuilder是单线程版本，效率更高
+String常量采用字符串池(String Pool)管理技术
+空字符串有内存，而null没有分配内存
