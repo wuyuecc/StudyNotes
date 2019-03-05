@@ -4,3 +4,41 @@ String是不可变字符串，StringBuffer和StringBuilder是可变字符串
 StringBuffer是线程安全的，StringBuilder是单线程版本，效率更高
 String常量采用字符串池(String Pool)管理技术
 空字符串有内存，而null没有分配内存
+
+面向对象基础
+封装、继承、多态，Java是单继承，但可以实现多个接口
+类的声明，[]表示可选，|表示或，abstract表示抽象类，final表示不能被继承
+[public] [abstract|final] class className [extends superclassName] [implements interfaceNameList] {
+  //类体
+}
+成员变量声明，static表示静态变量（类变量），final表示变量不能被修改
+[public|protected|private] [static] [final] type variableName;
+成员方法声明，abstract方法必须在子类中被实现，final方法在子类中不能被覆盖(override)，native方法使用JNI技术调用C代码，synchronized用于保证线程安全
+[public|protected|private] [static] [abstract|final] [native] [synchronized] type methodName ([parameterLis]) [throws exceptionList] {
+  //方法体
+}
+包名全是小写字母，编译器把包对应于文件系统的目录管理（源文件和字节码文件）
+package pkg1[.pkg2[.pkg3...]];
+方法重载(overload)通过参数列表不同（参数个数不同或者参数类型不同）实现，返回值不能用于来区分重载
+Java类成员的访问控制有4个等级：私有(private)，默认(没有关键字)，保护(protected),公有(public)，默认级别为同一个包，保护级别为不同包的子类
+
+对象
+对象的类型为引用类型，即类、接口和数组
+对象的声明和实例化，如int array[]=new int[10]; String name=new String("Hello");
+构造方法有3个特点：与类同名，没有返回值（包括void），只能与new结合使用
+this指向对象本身，可以调用成员变量、成员方法、其他构造方法
+C++通过delete手动释放不再使用的对象，Java和C#有垃圾回收(garbage collection)，Objective-C和Swift有自动引用计数(Automatic Reference Counting)
+
+继承与多态
+子类使用super关键字调用父类构造方法
+final修饰的变量即常量，final修饰的成员变量只能在构造方法或静态代码块中初始化
+
+抽象类与接口
+抽象类中有0~n个抽象方法和0~n个具体方法，抽象方法所在的类一定是抽象类，抽象方法只有声明，没有实现，即没有大括号{}部分
+public abstract class Figure{
+  public abstract void onDraw();
+}
+接口中成员变量都是静态变量，方法都是抽象方法（Java8以后可以添加默认方法和静态方法）
+C++多继承，两个父类有相同的方法，子类继承哪个方法会有冲突，Java接口只有抽象方法，实现它们不会有冲突
+接口中只有静态常量，没有实例成员变量，也因此没有且不需要构造方法
+当需要维护一个对象的信息和状态时，用抽象类，接口不行
