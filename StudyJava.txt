@@ -51,3 +51,20 @@ C++中枚举类型本质是int，而Java中枚举类型是引用类型，本质�
 枚举类的构造方法是私有的，不允许在外部创建对象，类似于单例设计模式和工厂设计模式
 Java中引用类型比较有==和equals两种，==比较是否指向同一个对象，equals比较对象内容是否相同，对枚举类型两者等价，因为每个枚举常量只有1个实例
 
+Java常用类，内部类，Lambda表达式
+
+异常处理
+Error是程序无法恢复的错误，如JVM内部错误、内存溢出、资源耗尽等
+Exception是程序可以恢复的异常，如除0异常、空指针访问、网络连接中断、读取不存在的文件等
+多个异常可以用多个catch块（按catch顺序捕获），或者catch中用或"|"来连接异常
+释放资源可以用finally代码块或者Java7后提供的自动资源管理(automatic resource management)技术
+try{
+    //可能发生异常的语句
+} catch(Throwable e1){
+    //处理异常e1
+} catch(Throwable e2){
+    //处理异常e2
+} finally{
+    //释放资源
+}
+throws用于方法后声明抛出异常，throw用于人工引发异常
