@@ -79,3 +79,29 @@ C++模板(template)和Java泛型(generics)不同
 2.C++中，编译器用类型参数来扩充模板（缺点是代码膨胀），List<A>和List<B>是两个不同的类
   Java中，编译器会“擦除”类型参数，替换为限定类型或Object，ArrayList<A>和ArrayList<B>是同一个类
   如ArrayList<String> a = new ArrayList<String>(); --> ArrayList a = new ArrayList();
+
+多线程编程
+进程是一个运行中的程序，每个进程有自己独立的内存空间和系统资源，一个进程内的多个线程，共享内存空间和系统资源
+Java程序启动后由JVM创建主线程，主线程负责子线程的创建、启动、挂起、停止等操作，UI由主线程负责处理
+主线程执行入口是main(String[] args)方法，子线程执行入口是线程执行对象（实现Runnable接口对象）的run()方法
+Thread构造方法：Thread(Runnable target)和Thread(Runnable target, String name)
+创建线程对象有两种方法
+1.实现Runnable接口（覆写run()方法），作为Thread构造方法的传入参数
+2.继承Thread类（由于Thread类也实现了Runnable接口，所以也是覆写run()方法）
+Java只支持单继承，当开发图形界面的应用时，需要一个类即是窗口（继承JFrame）又是线程体，此时只能采用实现Runnable接口方式
+如果线程体使用的地方不错，可以不单独定义一个类，使用匿名内部类或者Lambda表达式直接实现Runnable接口，如下
+Thread t1=new Thread(new Runnable(){
+    @Override
+    public void run(){
+        //线程体
+    }
+});
+线程状态有新建(new)、就绪(runnable)、运行(running)、阻塞(blocked)、死亡(dead)这5种状态
+线程对象被new创建出来后为新建状态，主线程调用新建线程的start()方法后，进入就绪状态，等待CPU调度，CPU调度就绪状态的线程，线程进入运行状态，此时独占CPU（对于单核CPU），线程由于加锁、调用sleep()方法休眠、其他线程调用了join()方法、等待I/O操作、调用wait()方法，进入阻塞状态，等到休眠结束、其他线程完成或等待超时、I/O操作完成、其他线程调用notify或notifyAll唤醒wait线程，重新回到就绪状态线程正常执行完run()方法或由于发生异常，退出run()方法后，进入死亡状态
+影响线程获得CPU时间的因素，除了线程优先级（整数1~10表示，最低为1），还与操作系统有关
+当前线程调用t1线程的join()方法，则阻塞当前线程，等待t1线程结束或超时，使用场景是当前线程依赖于t1线程的运行结果
+yield()方法可以给同优先级或更高优先级的线程让步，但使用很少，大多使用sleep()方法
+stop()、suspend()、resume()等方法有时会引发严重的系统故障，已经不推荐使用，推荐做法是结束变量方式，如while(!command.equals("exit"))
+多线程同步，可以加互斥锁，有两种方式
+1.sychronized修饰方法，对方法进行同步
+2.sychronized语句，后跟小括号把要同步的对象括起来，再跟大括号把要同步的代码括起来（主要用于第三方类，不方便修改代码，可以只修改调用代码）
