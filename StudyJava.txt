@@ -80,6 +80,10 @@ C++模板(template)和Java泛型(generics)不同
   Java中，编译器会“擦除”类型参数，替换为限定类型或Object，ArrayList<A>和ArrayList<B>是同一个类
   如ArrayList<String> a = new ArrayList<String>(); --> ArrayList a = new ArrayList();
 
+文件管理和I/O流
+Java使用File类对文件和目录操作，路径的文件分隔符，UNIX、Linux、macOS上用正斜杠/，Windows上用反斜杠\，但是反斜杠前要加转义符，即\\
+I/O流有字节流和字符流，字节流以byte字节为基本单位，字符流以双字节Unicode字符为基本单位
+
 多线程编程
 进程是一个运行中的程序，每个进程有自己独立的内存空间和系统资源，一个进程内的多个线程，共享内存空间和系统资源
 Java程序启动后由JVM创建主线程，主线程负责子线程的创建、启动、挂起、停止等操作，UI由主线程负责处理
