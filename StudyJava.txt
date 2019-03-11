@@ -130,3 +130,12 @@ Java作为一种静态语言需要编译后才能运行，通过反射机制，�
 注解annotation以@符号开头，作为补充信息，不影响程序运行结果或性能，有的注解在编译时给用户提示警告，有的注解运行时读写字节码文件信息
 注解分为基本注解(@Override,@Deprecated,@SUppressWarnings等)和元注解(注解的注解)
 一个源文件中可以声明多个注解，但只能有一个是有公有访问权限的
+
+数据库编程
+JDBC技术:
+1.Java官方提供JDBC接口(如Connection,Statement和ResultSet)
+2.数据库厂商提供接口的实现类，称为JDBC Driver(JDBC驱动程序)
+3.对于开发人员，调用统一的JDBC API，不必关心实现细节
+使用Class.forName()方法加载驱动程序，调用DriverManager类的getConnection()方法建立数据连接
+JDBC API中三个最重要的接口：Connection(连接对象)，Statement(语句对象)，ResultSet(结果集)
+数据CRUD操作（增删改查）：插入(Create)、查询(Read)、更新(Update)、删除(Delete)
