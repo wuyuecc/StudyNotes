@@ -136,6 +136,13 @@ JDBC技术:
 1.Java官方提供JDBC接口(如Connection,Statement和ResultSet)
 2.数据库厂商提供接口的实现类，称为JDBC Driver(JDBC驱动程序)
 3.对于开发人员，调用统一的JDBC API，不必关心实现细节
-使用Class.forName()方法加载驱动程序，调用DriverManager类的getConnection()方法建立数据连接
+加载驱动的几种方法：
+1.Class.forName("com.mysql.jdbc.Driver")方;（加载驱动的class文件，执行静态代码块，而Driver类的静态代码块完成了注册操作DriverManager.registerDriver()）
+2.new com.mysql.jdbc.Driver();（执行Driver类的静态代码块）
+3.System.setProperty("jdbc.drivers","com.mysql.jdbc.Driver");
+除了用DriverManager，还可以用DataSource接口的实现类（数据库厂商提供）来建立数据连接：
+1.基本实现（等同于DriverManager）
+2.连接池实现
+3.分布式事务实现
 JDBC API中三个最重要的接口：Connection(连接对象)，Statement(语句对象)，ResultSet(结果集)
 数据CRUD操作（增删改查）：插入(Create)、查询(Read)、更新(Update)、删除(Delete)
